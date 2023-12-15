@@ -1,0 +1,2 @@
+This is written in flask and used Sqlalchemy, marshmallow etc.
+All the dependency wriiten in requirements.txt file.
