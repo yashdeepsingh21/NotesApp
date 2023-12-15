@@ -30,8 +30,7 @@ class UserNotes(Resource):
             data = user_param.load(request.json)
             notes_id = Notes.query.order_by(Notes.notes_id.desc()).first().notes_id
             id = Notes.query.order_by(Notes.id.desc()).first().id
-            add_data = Notes(**data, notes_id=notes_id + 1, created_at = datetime.datetime.utcnow(), user_id = user_id, id = id + 1)
-            print(add_data)
+            add_data = Notes(**data, notes_id=notes_id + 1, created_at=datetime.datetime.utcnow(), user_id=user_id, id=id + 1)
             db.session.add(add_data)
             db.session.commit()
             return {"message": "data added successfully"}

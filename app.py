@@ -1,7 +1,7 @@
 from flask import Flask
 from extensions import db, api
 from extensions import migrate, ma
-from Notes.resources import notes
+from Notes.resources import notes, ns
 from UserAuth.resources import user_auth
 
 
@@ -16,6 +16,8 @@ app.register_blueprint(notes)
 app.register_blueprint(user_auth)
 
 db.init_app(app)
+
+api.add_namespace(ns)
 
 migrate.init_app(app, db)
 ma.init_app(app)

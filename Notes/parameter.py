@@ -8,7 +8,11 @@ class UserNotesParameter(NotesSchema):
     content = base_fields.String(required=False)
 
     class Meta:
-        pass
+        model = Notes
+        fields = (
+            'title',
+            'content',
+        )
 
 
 class UpdateNotesParameter(NotesSchema):
