@@ -25,14 +25,17 @@ class UserNotes(Resource):
         except Exception as e:
             return {"message": str(e)}
 
+
+    @ns.expect(UserNotesParameter())
     def post(self, user_id):
         try:
-            data = user_param.load(request.json)
-            notes_id = Notes.query.order_by(Notes.notes_id.desc()).first().notes_id
-            id = Notes.query.order_by(Notes.id.desc()).first().id
-            add_data = Notes(**data, notes_id=notes_id + 1, created_at=datetime.datetime.utcnow(), user_id=user_id, id=id + 1)
-            db.session.add(add_data)
-            db.session.commit()
+            # data = user_param.load(request.json)
+            # notes_id = Notes.query.order_by(Notes.notes_id.desc()).first().notes_id
+            # id = Notes.query.order_by(Notes.id.desc()).first().id
+            # add_data = Notes(**data, notes_id=notes_id + 1, created_at=datetime.datetime.utcnow(), user_id=user_id,
+            #                  id=id + 1)
+            # db.session.add(add_data)
+            # db.session.commit()
             return {"message": "data added successfully"}
         except Exception as e:
             return {"message": str(e)}

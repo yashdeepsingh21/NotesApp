@@ -1,18 +1,11 @@
-from marshmallow import validates, fields as base_fields, post_load, validate
+from marshmallow import validates, fields as base_fields, post_load, validate, Schema
 from Notes.schema import NotesSchema
-from Notes.models import Notes
 
 
-class UserNotesParameter(NotesSchema):
-    title = base_fields.String(required=True, validate=validate.Length(min=2, max=255))
-    content = base_fields.String(required=False)
-
-    class Meta:
-        model = Notes
-        fields = (
-            'title',
-            'content',
-        )
+class UserNotesParameter(Schema):
+    title = base_fields.String(required=True, validate=validate.Length(min=2, max=255), attribute="title")
+    content = base_fields.String(required=False, attribute="content")
+    notes_id = base_fields.Integer(required=False, attribute="notes_id")
 
 
 class UpdateNotesParameter(NotesSchema):

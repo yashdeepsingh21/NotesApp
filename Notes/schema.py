@@ -1,8 +1,9 @@
 from extensions import ma
 from Notes.models import Notes
+from marshmallow import Schema
 
 
-class NotesSchema(ma.SQLAlchemyAutoSchema):
+class NotesSchema(ma.SQLAlchemyAutoSchema, Schema):
     class Meta:
         model = Notes
         load_instance = True
