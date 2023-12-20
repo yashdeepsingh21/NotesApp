@@ -1,10 +1,11 @@
-from marshmallow import validates, fields as base_fields, post_load, validate
+from marshmallow import validates, fields as base_fields, validate
 from extensions import ma
 from UserAuth.schema import UserAuthSchema
 from UserAuth.models import UserAuth
 import re
 
-class UserAuthsParameter(UserAuthSchema):
+
+class UserAuthsParameter(UserAuthSchema, ma.Schema):
     user_name = base_fields.String(required=True, validate=validate.Length(min=2, max=255),
                                    error_messages={"required": "name is required"})
     email = base_fields.Email(required=True, validate=validate.Length(min=4, max=255))

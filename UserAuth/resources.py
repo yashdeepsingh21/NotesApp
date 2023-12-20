@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from flask_restx import Resource, Namespace
 from UserAuth.models import UserAuth
 from extensions import db, api
@@ -19,7 +19,7 @@ class UserAuths(Resource):
     @ns.response(UserAuthSchema(many=True), description='List of user_auths')
     def get(self):
         data = UserAuth.query.all()
-        return {"data": user_auth_schema.dump(data)}
+        return {"users": user_auth_schema.dump(data)}
 
     @ns.response(UserAuthSchema(), description='UserAuth')
     @ns.expect(UserAuthsParameter())
